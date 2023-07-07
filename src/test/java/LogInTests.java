@@ -1,7 +1,6 @@
 import LogInDataObjects.InValidPassData;
 import LogInDataObjects.InValidUserData;
 import LogInPageObjects.*;
-import Utils.ChromeRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -119,6 +118,23 @@ public class LogInTests {
         Assert.assertEquals(errorText, "Error text is correct", "Error text is correct");
 
     }
+
+    @Test
+    public void emptyUserDataLogIn() throws InterruptedException{
+        EmptyLogInPage home = new EmptyLogInPage(driver);
+        home
+                .UsernameInput()
+                .PasswordInput()
+                .clickOnLogInButton();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@data-test='error']")));
+        String errorText = errorElement.getText();
+        System.out.println("Error Text: " + errorText);
+        Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
+        Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
+    }
+
         @AfterMethod
     public void tearDown() {
         driver.close();
