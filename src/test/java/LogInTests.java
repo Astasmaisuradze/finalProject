@@ -1,6 +1,3 @@
-import LogInDataObjects.InValidPassData;
-import LogInDataObjects.InValidUserData;
-import LogInDataObjects.ValidUserAndPassData;
 import LogInPageObjects.InValidPassPage;
 import LogInPageObjects.ValidUserAndPassPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -19,6 +16,7 @@ public class LogInTests {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
@@ -27,8 +25,8 @@ public class LogInTests {
     public void validUserLogIn() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
         home
-                .UsernameInput(ValidUserAndPassData.username)
-                .PasswordInput(ValidUserAndPassData.password)
+                .UsernameInput()
+                .PasswordInput()
                 .clickOnLogInButton();
 
     }
@@ -37,20 +35,23 @@ public class LogInTests {
     public void inValidUserLogIn() throws InterruptedException{
         InValidUserPage home = new InValidUserPage(driver);
         home
-                .UsernameInput(InValidUserData.username)
-                .PasswordInput(InValidUserData.password)
+                .UsernameInput()
+                .PasswordInput()
                 .clickOnLogInButton();
     }
 
 
     @Test
     public void inValidPassLogIn() throws InterruptedException{
+
         InValidPassPage home = new InValidPassPage(driver);
         home
-                .UsernameInput(InValidPassData.username)
-                .PasswordInput(InValidPassData.password)
+                .UsernameInput()
+                .PasswordInput()
                 .clickOnLogInButton();
-    }
+
+
+            }
 
     @AfterMethod
     public void tearDown() {

@@ -16,19 +16,18 @@ public class InValidUserPage {
     By loginButton = By.id("login-button");
 
     @Step("Username Input:{0}")
-    public InValidUserPage UsernameInput (String username){
+    public InValidUserPage UsernameInput (){
         driver.findElement(usernameInput).sendKeys(InValidUserData.username);
         return this;
     }
     @Step("Password Input:{0}")
-    public InValidUserPage PasswordInput (String password) {
+    public InValidUserPage PasswordInput () {
         driver.findElement(passwordInput).sendKeys(InValidUserData.password);
         return this;
     }
     @Step("Click on Login Button")
-    public InValidUserPage clickOnLogInButton() throws InterruptedException {
+    public void clickOnLogInButton() throws InterruptedException {
         driver.findElement(loginButton).click();
         Thread.sleep(5000);
-        return this;
     }
 }

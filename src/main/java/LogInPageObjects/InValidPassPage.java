@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 public class InValidPassPage {
     WebDriver driver;
 
-    public InValidPassPage(WebDriver driver){
+    public InValidPassPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -17,19 +17,22 @@ public class InValidPassPage {
     By loginButton = By.id("login-button");
 
     @Step("Username Input:{0}")
-    public InValidPassPage UsernameInput (String username){
+    public InValidPassPage UsernameInput() {
         driver.findElement(usernameInput).sendKeys(InValidPassData.username);
         return this;
     }
+
     @Step("Password Input:{0}")
-    public InValidPassPage PasswordInput (String password) {
+    public InValidPassPage PasswordInput() {
         driver.findElement(passwordInput).sendKeys(InValidPassData.password);
         return this;
     }
+
     @Step("Click on Login Button")
-    public InValidPassPage clickOnLogInButton() throws InterruptedException {
+    public void clickOnLogInButton() throws InterruptedException {
         driver.findElement(loginButton).click();
         Thread.sleep(5000);
-        return this;
     }
+
 }
+

@@ -18,20 +18,19 @@ public class ValidUserAndPassPage {
     By loginButton = By.id("login-button");
 
     @Step("Username Input:{0}")
-    public ValidUserAndPassPage UsernameInput (String username){
+    public ValidUserAndPassPage UsernameInput (){
         driver.findElement(usernameInput).sendKeys(ValidUserAndPassData.username);
         return this;
     }
     @Step("Password Input:{0}")
-    public ValidUserAndPassPage PasswordInput (String password) {
+    public ValidUserAndPassPage PasswordInput () {
         driver.findElement(passwordInput).sendKeys(ValidUserAndPassData.password);
         return this;
     }
     @Step("Click on Login Button")
-    public ValidUserAndPassPage clickOnLogInButton() throws InterruptedException {
+    public void clickOnLogInButton() throws InterruptedException {
         driver.findElement(loginButton).click();
         Thread.sleep(5000);
-        return this;
     }
 }
 
