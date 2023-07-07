@@ -1,6 +1,6 @@
-package PageObjects;
+package LogInPageObjects;
 
-import DataObjects.LogInData;
+import LogInDataObjects.LogInData;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

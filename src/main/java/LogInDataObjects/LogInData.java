@@ -1,4 +1,4 @@
-package DataObjects;
+package LogInDataObjects;
 
 public interface LogInData {
     String

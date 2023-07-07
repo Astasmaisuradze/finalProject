@@ -1,4 +1,4 @@
-package DataObjects;
+package LogInDataObjects;
 
 import com.github.javafaker.Faker;
 
