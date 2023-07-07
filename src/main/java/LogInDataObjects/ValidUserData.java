@@ -1,6 +1,6 @@
 package LogInDataObjects;
 
-public interface LogInData {
+public interface ValidUserData {
     String
     username = "standard_user",
     password = "secret_sauce";

@@ -1,15 +1,15 @@
 package LogInPageObjects;
 
-import LogInDataObjects.LogInData;
+import LogInDataObjects.ValidUserData;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class LogInPage {
+public class ValidUserPage {
     WebDriver driver;
 
-    public LogInPage(WebDriver driver){
+    public ValidUserPage(WebDriver driver){
         this.driver = driver;
     }
 
@@ -18,17 +18,17 @@ public class LogInPage {
     By loginButton = By.id("login-button");
 
     @Step("Username Input:{0}")
-    public LogInPage UsernameInput (String username){
-        driver.findElement(usernameInput).sendKeys(LogInData.username);
+    public ValidUserPage UsernameInput (String username){
+        driver.findElement(usernameInput).sendKeys(ValidUserData.username);
         return this;
     }
     @Step("Password Input:{0}")
-    public LogInPage PasswordInput (String password) {
-        driver.findElement(passwordInput).sendKeys(LogInData.password);
+    public ValidUserPage PasswordInput (String password) {
+        driver.findElement(passwordInput).sendKeys(ValidUserData.password);
         return this;
     }
     @Step("Click on Login Button")
-    public LogInPage clickOnLogInButton() throws InterruptedException {
+    public ValidUserPage clickOnLogInButton() throws InterruptedException {
         driver.findElement(loginButton).click();
         Thread.sleep(5000);
         return this;
