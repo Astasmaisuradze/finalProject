@@ -1,6 +1,4 @@
-import LogInPageObjects.InValidPassPage;
-import LogInPageObjects.LockedUserPage;
-import LogInPageObjects.ValidUserAndPassPage;
+import LogInPageObjects.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -12,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import LogInPageObjects.InValidUserPage;
+
 import java.time.Duration;
 
 public class LogInTests {
@@ -97,9 +95,23 @@ public class LogInTests {
 
     }
 
+    @Test
+    public void problemUserLogIn() throws InterruptedException{
+        ProblemUserPage home = new ProblemUserPage(driver);
+        home
+                .UsernameInput()
+                .PasswordInput()
+                .clickOnLogInButton();
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@data-test='error']")));
+        String errorText = errorElement.getText();
+        System.out.println("Error Text: " + errorText);
+        Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
+        Assert.assertEquals(errorText, "Error text is correct", "Error text is correct");
 
-    @AfterMethod
+    }
+        @AfterMethod
     public void tearDown() {
         driver.close();
     }
