@@ -1,5 +1,7 @@
+import LogInDataObjects.InValidPassData;
 import LogInDataObjects.InValidUserData;
 import LogInDataObjects.ValidUserData;
+import LogInPageObjects.InValidPassPage;
 import LogInPageObjects.ValidUserPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import LogInPageObjects.InValidUserPage;
+import LogInPageObjects.InValidPassPage;
 
 public class LogInTests {
     WebDriver driver;
@@ -22,7 +25,7 @@ public class LogInTests {
 
 
     @Test
-    public void validLogIn() throws InterruptedException {
+    public void validUserLogIn() throws InterruptedException {
         ValidUserPage home = new ValidUserPage(driver);
         home
                 .UsernameInput(ValidUserData.username)
@@ -32,11 +35,21 @@ public class LogInTests {
     }
 
     @Test
-    public void inValidLogIn() throws InterruptedException{
+    public void inValidUserLogIn() throws InterruptedException{
         InValidUserPage home = new InValidUserPage(driver);
         home
                 .UsernameInput(InValidUserData.username)
                 .PasswordInput(InValidUserData.password)
+                .clickOnLogInButton();
+    }
+
+
+    @Test
+    public void inValidPassLogIn() throws InterruptedException{
+        InValidPassPage home = new InValidPassPage(driver);
+        home
+                .UsernameInput(InValidPassData.username)
+                .PasswordInput(InValidPassData.password)
                 .clickOnLogInButton();
     }
 
