@@ -28,7 +28,7 @@ public class LogInTests {
     }
 
 
-    @Test
+    @Test(priority = 6)
     public void validUserLogIn() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
         home
@@ -46,7 +46,7 @@ public class LogInTests {
 
 
 
-    @Test
+    @Test(priority = 5)
     public void inValidUserLogIn() throws InterruptedException{
         InValidUserPage home = new InValidUserPage(driver);
         home
@@ -66,7 +66,7 @@ public class LogInTests {
     }
 
 
-    @Test
+    @Test(priority = 4)
     public void inValidPassLogIn() throws InterruptedException{
 
         InValidPassPage home = new InValidPassPage(driver);
@@ -85,7 +85,7 @@ public class LogInTests {
         invalidPassData.printPasswordVariants(5);
     }
 
-    @Test
+    @Test(priority = 2)
     public void lockedUserLogIn() throws InterruptedException{
         LockedUserPage home = new LockedUserPage(driver);
         home
@@ -102,7 +102,7 @@ public class LogInTests {
 
     }
 
-    @Test
+    @Test(priority = 3)
     public void problemUserLogIn() throws InterruptedException{
         ProblemUserPage home = new ProblemUserPage(driver);
         home
@@ -119,7 +119,7 @@ public class LogInTests {
 
     }
 
-    @Test
+    @Test(priority = 1)
     public void emptyUserDataLogIn() throws InterruptedException{
         EmptyLogInPage home = new EmptyLogInPage(driver);
         home
