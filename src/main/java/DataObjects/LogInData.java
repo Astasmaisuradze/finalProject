@@ -5,3 +5,5 @@ public interface LogInData {
     username = "standard_user",
     password = "secret_sauce";
 }
+
+
