@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import PageObjects.InValidLogInPage;
 
-public class LogInTest {
+public class LogInTests {
     WebDriver driver;
 
     @BeforeMethod(description = "Setup browser before testing")
@@ -43,7 +43,6 @@ public class LogInTest {
     @AfterMethod
     public void tearDown() {
         driver.close();
-
     }
 
 }
