@@ -1,3 +1,5 @@
+import LogInDataObjects.InValidPassData;
+import LogInDataObjects.InValidUserData;
 import LogInPageObjects.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
@@ -58,6 +60,9 @@ public class LogInTests {
         System.out.println("Error Text: " + errorText);
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
+        InValidUserData invalidUserData = new InValidUserData() {};
+        invalidUserData.printFirstnameVariants();
+
     }
 
 
@@ -76,6 +81,8 @@ public class LogInTests {
         System.out.println("Error Text: " + errorText);
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
+        InValidPassData invalidPassData = new InValidPassData() {};
+        invalidPassData.printPasswordVariants(5);
     }
 
     @Test

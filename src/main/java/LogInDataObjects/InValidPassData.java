@@ -7,4 +7,12 @@ public interface InValidPassData {
     String
             username = "standard_user",
             password = faker.internet().password();
+
+    default void printPasswordVariants(int interactionCount) {
+        for (int i = 0; i < interactionCount; i++) {
+            String password = faker.internet().password();
+            System.out.println("Password variants " + (i + 1) + ": " + password);
+        }
+    }
 }
+
