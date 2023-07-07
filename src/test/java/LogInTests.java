@@ -1,4 +1,5 @@
 import LogInPageObjects.InValidPassPage;
+import LogInPageObjects.LockedUserPage;
 import LogInPageObjects.ValidUserAndPassPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
@@ -77,6 +78,23 @@ public class LogInTests {
         System.out.println("Error Text: " + errorText);
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
+    }
+
+    @Test
+    public void lockedUserLogIn() throws InterruptedException{
+        LockedUserPage home = new LockedUserPage(driver);
+        home
+                .UsernameInput()
+                .PasswordInput()
+                .clickOnLogInButton();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@data-test='error']")));
+        String errorText = errorElement.getText();
+        System.out.println("Error Text: " + errorText);
+        Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
+        Assert.assertEquals(errorText, "Error text is correct", "Error text is correct");
+
     }
 
 
