@@ -14,7 +14,7 @@ public interface InValidUserData {
 
         while (count < interactionCount) {
             String firstname = faker.name().firstName();
-            System.out.println("Firstname variant " + (count + 1) + ": " + firstname);
+            System.out.println("Firstname options " + (count + 1) + ": " + firstname);
             count++;
         }
     }
