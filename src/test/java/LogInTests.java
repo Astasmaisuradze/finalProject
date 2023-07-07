@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 
 public class LogInTests {
@@ -41,8 +40,23 @@ public class LogInTests {
         System.out.println("Inventory Text: " + inventoryText);
         Assert.assertTrue("Inventory container is displayed", inventoryElement.isDisplayed());
         Assert.assertNotEquals(inventoryText, "Expected Inventory Text", "Inventory text is correct");
-    }
 
+    }
+    @Test(priority = 7)
+    public void validUserLogInWithBuy() throws InterruptedException {
+        ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
+        home
+                .UsernameInput()
+                .PasswordInput()
+                .clickOnLogInButton();
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement addToCartButton = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn_inventory")));
+        addToCartButton.click();
+        WebElement cartBadge = driver.findElement(By.cssSelector(".shopping_cart_badge"));
+        String cartItemCount = cartBadge.getText();
+        System.out.println("Cart item count: " + cartItemCount);
+        Assert.assertNotEquals(cartItemCount, "1", "Product is added to the cart");
+    }
 
 
 
@@ -134,6 +148,7 @@ public class LogInTests {
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
     }
+
 
         @AfterMethod
     public void tearDown() {
