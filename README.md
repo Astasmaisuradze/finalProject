@@ -1,1 +1,1 @@
-# This project is a final version of Java Automation Course.
+# This project is about the final version of the Java Automation Course.
