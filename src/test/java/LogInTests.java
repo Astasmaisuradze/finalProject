@@ -151,7 +151,7 @@ public class LogInTests extends ChromeRunner {
     }
 
 
-        @AfterMethod
+        @AfterMethod(description = "Close browser after testing")
     public void tearDown() {
         driver.close();
     }
