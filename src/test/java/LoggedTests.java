@@ -28,13 +28,27 @@ public class LoggedTests {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement menuButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("react-burger-menu-btn")));
         menuButton.click();
-
         WebElement inventoryLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("All Items")));
         inventoryLink.click();
-
         String currentURL = driver.getCurrentUrl();
         Assert.assertTrue("Inventory page is displayed", currentURL.contains("https://www.saucedemo.com/inventory.html"));
     }
+
+    @Test(priority = 2)
+    public void loginAndLogoutFromMenuBar() {
+        login();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement menuButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("react-burger-menu-btn")));
+        menuButton.click();
+        WebElement logoutLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("logout_sidebar_link")));
+        logoutLink.click();
+        WebElement loginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
+        Assert.assertTrue("Login button is displayed", loginButton.isDisplayed());
+        String currentURL = driver.getCurrentUrl();
+        Assert.assertFalse("Inventory page is displayed", currentURL.contains("https://www.saucedemo.com/inventory.html"));
+    }
+
 
     private void login() {
         WebElement usernameInput = driver.findElement(By.id("user-name"));
