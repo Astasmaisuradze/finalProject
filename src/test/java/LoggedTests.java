@@ -21,8 +21,8 @@ public class LoggedTests {
     }
 
     @Test(priority = 1)
-    public void loginAndAccessInventoryPage() {
-        login();
+    public void logInAndAccessInventoryPage() {
+        logIn();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement menuButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("react-burger-menu-btn")));
@@ -34,8 +34,8 @@ public class LoggedTests {
     }
 
     @Test(priority = 2)
-    public void loginAndLogoutFromMenuBar() {
-        login();
+    public void logInAndLogOutFromMenuBar() {
+        logIn();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement menuButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("react-burger-menu-btn")));
@@ -49,7 +49,7 @@ public class LoggedTests {
     }
 
 
-    private void login() {
+    private void logIn() {
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         usernameInput.sendKeys("standard_user");
 
