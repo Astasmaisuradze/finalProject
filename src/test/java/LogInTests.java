@@ -60,7 +60,6 @@ public class LogInTests extends ChromeRunner {
     }
 
 
-
     @Test(priority = 5)
     public void inValidUserLogIn() throws InterruptedException{
         InValidUserPage home = new InValidUserPage(driver);
@@ -151,6 +150,9 @@ public class LogInTests extends ChromeRunner {
     }
 
 
+
+//am testshi aris macOS problema da kidev timeoutis romelis mgovarebac arc ise martivi iyo da sabolood davtove failed
+//radgan fail caseic gveqneboda
     @Test(priority = 8)
     public void viewOrderHistory() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
@@ -176,6 +178,10 @@ public class LogInTests extends ChromeRunner {
         Assert.assertNotEquals(orderHistoryTitleText, "Expected Order History Title", "Order history title is correct");
     }
 
+
+
+//esec msgavsi qeisia, am testshi aris macOS problema da kidev timeoutis romelis mgovarebac arc ise martivi iyo da
+//sabolood davtove failed radgan fail caseic gveqneboda
     @Test(priority = 9)
     public void verifyOrder() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
