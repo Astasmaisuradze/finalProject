@@ -1,3 +1,4 @@
+import LogInDataObjects.InValidFullData;
 import LogInDataObjects.InValidPassData;
 import LogInDataObjects.InValidUserData;
 import LogInPageObjects.*;
@@ -83,7 +84,6 @@ public class LogInTests extends ChromeRunner {
 
     @Test(priority = 4)
     public void inValidPassLogIn() throws InterruptedException{
-
         InValidPassPage home = new InValidPassPage(driver);
         home
                 .UsernameInput()
@@ -175,6 +175,17 @@ public class LogInTests extends ChromeRunner {
                 System.out.println("Error: Inventory page title is as expected");
             }
         }
+
+    @Test(priority = 9)
+    public void inValidFullUser() throws InterruptedException {
+        InValidFullDataPage home = new InValidFullDataPage(driver);
+        home
+                .UsernameInput()
+                .PasswordInput()
+                .clickOnLogInButton();
+        InValidFullData.generateUsernamesAndPasswords(10);
+
+    }
 
         @AfterMethod(description = "Close browser after testing")
         public void tearDown () {
