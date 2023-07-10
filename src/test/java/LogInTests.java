@@ -115,7 +115,8 @@ public class LogInTests extends ChromeRunner {
         Assert.assertEquals(errorText, "Error text is correct", "Error text is correct");
 
     }
-
+//aq problemuri momxmareblidan gamomdinare sehsadzlo da logikuric aris, rom testi dafeildes. magram
+//ar gamovricxav im nawilsac, rom esec macOS temashia iyos, radgan msgavs errors aqac afiqsirebs.
     @Test(priority = 3)
     public void problemUserLogIn() throws InterruptedException{
         ProblemUserPage home = new ProblemUserPage(driver);
@@ -152,7 +153,7 @@ public class LogInTests extends ChromeRunner {
 
 
 //am testshi aris macOS problema da kidev timeoutis romelis mgovarebac arc ise martivi iyo da sabolood davtove failed
-//radgan fail caseic gveqneboda
+//radgan fail caseic gveqneboda.
     @Test(priority = 8)
     public void viewOrderHistory() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
@@ -181,7 +182,7 @@ public class LogInTests extends ChromeRunner {
 
 
 //esec msgavsi qeisia, am testshi aris macOS problema da kidev timeoutis romelis mgovarebac arc ise martivi iyo da
-//sabolood davtove failed radgan fail caseic gveqneboda
+//sabolood davtove failed radgan fail caseic gveqneboda.
     @Test(priority = 9)
     public void verifyOrder() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
