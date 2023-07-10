@@ -184,13 +184,14 @@ public class LogInTests extends ChromeRunner {
                 .PasswordInput()
                 .clickOnLogInButton();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement inventoryElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inventory_container")));
         String inventoryText = inventoryElement.getText();
         System.out.println("Inventory Text: " + inventoryText);
         Assert.assertTrue("Inventory container is displayed", inventoryElement.isDisplayed());
         Assert.assertNotEquals(inventoryText, "Expected Inventory Text", "Inventory text is correct");
-        WebElement cartIcon = driver.findElement(By.cssSelector(".cart-icon"));
+        WebElement parentContainer = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("parentContainer")));
+        WebElement cartIcon = parentContainer.findElement(By.cssSelector(".cart-icon"));
         cartIcon.click();
         WebElement cartTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cart-title")));
         String cartTitleText = cartTitle.getText();
