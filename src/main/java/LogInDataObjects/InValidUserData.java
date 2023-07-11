@@ -9,7 +9,7 @@ public interface InValidUserData {
             username = faker.name().firstName(),
             password = "secret_sauce";
 
-    default void printFirstnameVariants() {
+    default void printFirstNameOptions() {
         int count = 0;
 
         while (count < interactionCount) {

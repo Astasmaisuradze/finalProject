@@ -77,7 +77,7 @@ public class LogInTests extends ChromeRunner {
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
         InValidUserData invalidUserData = new InValidUserData() {};
-        invalidUserData.printFirstnameVariants();
+        invalidUserData.printFirstNameOptions();
 
     }
 
@@ -97,7 +97,7 @@ public class LogInTests extends ChromeRunner {
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
         InValidPassData invalidPassData = new InValidPassData() {};
-        invalidPassData.printPasswordVariants(5);
+        invalidPassData.printPasswordOptions(5);
     }
 
     @Test(priority = 2)
@@ -183,7 +183,7 @@ public class LogInTests extends ChromeRunner {
                 .UsernameInput()
                 .PasswordInput()
                 .clickOnLogInButton();
-        InValidFullData.generateUsernamesAndPasswords(10);
+        InValidFullData.generateUsernamesAndPasswords();
 
     }
 
