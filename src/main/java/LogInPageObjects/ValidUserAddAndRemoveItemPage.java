@@ -58,8 +58,9 @@ public class ValidUserAddAndRemoveItemPage {
     }
 
     @Step("Click on Remove Button")
-    public void clickOnRemoveButton() {
+    public void clickOnRemoveButton() throws InterruptedException {
         WebElement removeBtn = wait.until(ExpectedConditions.elementToBeClickable(removeButton));
         removeBtn.click();
+        Thread.sleep(5000);
     }
 }
