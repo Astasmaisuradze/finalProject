@@ -3,7 +3,6 @@ import LogInDataObjects.InValidPassData;
 import LogInDataObjects.InValidUserData;
 import LogInPageObjects.ValidUserAndPassPage;
 import LogInPageObjects.*;
-import Utils.ChromeRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -18,7 +17,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class LogInTests extends ChromeRunner {
+public class LogInTests {
     WebDriver driver;
 
     @BeforeMethod(description = "Setup browser before testing")
