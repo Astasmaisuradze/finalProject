@@ -1,6 +1,7 @@
 import LogInDataObjects.InValidFullData;
 import LogInDataObjects.InValidPassData;
 import LogInDataObjects.InValidUserData;
+import LogInPageObjects.ValidUserAndPassPage;
 import LogInPageObjects.*;
 import Utils.ChromeRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -45,6 +46,7 @@ public class LogInTests extends ChromeRunner {
         Assert.assertNotEquals(inventoryText, "Expected Inventory Text", "Inventory text is correct");
 
     }
+
     @Test(priority = 7)
     public void validUserLogInWithBuy() throws InterruptedException {
         ValidUserAndPassPage home = new ValidUserAndPassPage(driver);
@@ -63,7 +65,7 @@ public class LogInTests extends ChromeRunner {
 
 
     @Test(priority = 5)
-    public void inValidUserLogIn() throws InterruptedException{
+    public void inValidUserLogIn() throws InterruptedException {
         InValidUserPage home = new InValidUserPage(driver);
         home
                 .UsernameInput()
@@ -76,14 +78,15 @@ public class LogInTests extends ChromeRunner {
         System.out.println("Error Text: " + errorText);
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
-        InValidUserData invalidUserData = new InValidUserData() {};
+        InValidUserData invalidUserData = new InValidUserData() {
+        };
         invalidUserData.printFirstNameOptions();
 
     }
 
 
     @Test(priority = 4)
-    public void inValidPassLogIn() throws InterruptedException{
+    public void inValidPassLogIn() throws InterruptedException {
         InValidPassPage home = new InValidPassPage(driver);
         home
                 .UsernameInput()
@@ -96,12 +99,13 @@ public class LogInTests extends ChromeRunner {
         System.out.println("Error Text: " + errorText);
         Assert.assertTrue("Error element is displayed", errorElement.isDisplayed());
         Assert.assertNotEquals(errorText, "Expected Error Text", "Error text is correct");
-        InValidPassData invalidPassData = new InValidPassData() {};
+        InValidPassData invalidPassData = new InValidPassData() {
+        };
         invalidPassData.printPasswordOptions(5);
     }
 
     @Test(priority = 2)
-    public void lockedUserLogIn() throws InterruptedException{
+    public void lockedUserLogIn() throws InterruptedException {
         LockedUserPage home = new LockedUserPage(driver);
         home
                 .UsernameInput()
@@ -118,7 +122,7 @@ public class LogInTests extends ChromeRunner {
     }
 
     @Test(priority = 3)
-    public void problemUserLogIn() throws InterruptedException{
+    public void problemUserLogIn() throws InterruptedException {
         ProblemUserPage home = new ProblemUserPage(driver);
         home
                 .UsernameInput()
@@ -136,7 +140,7 @@ public class LogInTests extends ChromeRunner {
     }
 
     @Test(priority = 1)
-    public void emptyUserDataLogIn() throws InterruptedException{
+    public void emptyUserDataLogIn() throws InterruptedException {
         EmptyLogInPage home = new EmptyLogInPage(driver);
         home
                 .UsernameInput()
@@ -159,22 +163,22 @@ public class LogInTests extends ChromeRunner {
                 .PasswordInput()
                 .clickOnLogInButton();
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            WebElement inventoryPageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
-            Assert.assertNotEquals(inventoryPageTitle.getText(), "PRODUCTS", "Inventory page title is as expected");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement inventoryPageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("title")));
+        Assert.assertNotEquals(inventoryPageTitle.getText(), "PRODUCTS", "Inventory page title is as expected");
 
-            List<WebElement> productList = driver.findElements(By.cssSelector(".inventory_item_name"));
-            System.out.println("Product List:");
-            for (WebElement product : productList) {
-                System.out.println(product.getText());
-            }
-
-            try {
-                Assert.assertEquals(inventoryPageTitle.getText(), "PRODUCTS");
-            } catch (AssertionError e) {
-                System.out.println("Error: Inventory page title is as expected");
-            }
+        List<WebElement> productList = driver.findElements(By.cssSelector(".inventory_item_name"));
+        System.out.println("Product List:");
+        for (WebElement product : productList) {
+            System.out.println(product.getText());
         }
+
+        try {
+            Assert.assertEquals(inventoryPageTitle.getText(), "PRODUCTS");
+        } catch (AssertionError e) {
+            System.out.println("Error: Inventory page title is as expected");
+        }
+    }
 
     @Test(priority = 9)
     public void inValidFullUser() throws InterruptedException {
@@ -187,9 +191,33 @@ public class LogInTests extends ChromeRunner {
 
     }
 
-        @AfterMethod(description = "Close browser after testing")
-        public void tearDown () {
-            driver.close();
-        }
+    @Test(priority = 10)
+    public void validUserLogInAndLogOut() throws InterruptedException {
+        ValidUserAddAndRemoveItemPage home = new ValidUserAddAndRemoveItemPage(driver);
+        home
+                .usernameInput()
+                .passwordInput()
+                .clickOnLogInButton();
+
+        ValidUserAddAndRemoveItemPage page = new ValidUserAddAndRemoveItemPage(driver);
+
+        page
+                .clickOnInventoryItem();
+
+        ValidUserAddAndRemoveItemPage badge = new ValidUserAddAndRemoveItemPage(driver);
+        badge
+                .clickOnShoppingCartBadge();
+
+        ValidUserAddAndRemoveItemPage remove = new ValidUserAddAndRemoveItemPage(driver);
+        remove
+                .clickOnRemoveButton();
+
+
     }
 
+
+    @AfterMethod(description = "Close browser after testing")
+    public void tearDown() {
+        driver.quit();
+    }
+}

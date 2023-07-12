@@ -1,5 +1,4 @@
 package LogInPageObjects;
-
 import LogInDataObjects.ValidUserAndPassData;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

@@ -1,5 +1,4 @@
 package LogInDataObjects;
-
 import com.github.javafaker.Faker;
 
 public interface InValidPassData {
