@@ -30,6 +30,18 @@ public class LoggedTests {
         WebElement loginButton = driver.findElement(By.id("login-button"));
         loginButton.click();
     }
+    public void applyFilterAndSort() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement filterButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("svg-inline--fa")));
+        filterButton.click();
+
+        WebElement priceHighToLow = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-test='product_sort_container']//option[text()='Price (high to low)']")));
+        priceHighToLow.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("inventory_item_name")));
+    }
+
 
 
     @Test(priority = 1)
@@ -60,6 +72,18 @@ public class LoggedTests {
         Assert.assertFalse("Inventory page is displayed", currentURL.contains("https://www.saucedemo.com/inventory.html"));
     }
 
+    @Test(priority = 3)
+    public void logInAndApplyFilterAndSort() {
+        logIn();
+        applyFilterAndSort();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement inventoryContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("inventory_container")));
+        String inventoryText = inventoryContainer.getText();
+        System.out.println("Inventory Text: " + inventoryText);
+        Assert.assertTrue("Inventory container is displayed", inventoryContainer.isDisplayed());
+
+    }
 
     @AfterMethod(description = "Close browser after testing")
     public void tearDown() {
