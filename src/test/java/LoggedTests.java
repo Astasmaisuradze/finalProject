@@ -20,6 +20,18 @@ public class LoggedTests {
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
+    private void logIn() {
+        WebElement usernameInput = driver.findElement(By.id("user-name"));
+        usernameInput.sendKeys("standard_user");
+
+        WebElement passwordInput = driver.findElement(By.id("password"));
+        passwordInput.sendKeys("secret_sauce");
+
+        WebElement loginButton = driver.findElement(By.id("login-button"));
+        loginButton.click();
+    }
+
+
     @Test(priority = 1)
     public void logInAndAccessInventoryPage() {
         logIn();
@@ -48,17 +60,6 @@ public class LoggedTests {
         Assert.assertFalse("Inventory page is displayed", currentURL.contains("https://www.saucedemo.com/inventory.html"));
     }
 
-
-    private void logIn() {
-        WebElement usernameInput = driver.findElement(By.id("user-name"));
-        usernameInput.sendKeys("standard_user");
-
-        WebElement passwordInput = driver.findElement(By.id("password"));
-        passwordInput.sendKeys("secret_sauce");
-
-        WebElement loginButton = driver.findElement(By.id("login-button"));
-        loginButton.click();
-    }
 
     @AfterMethod(description = "Close browser after testing")
     public void tearDown() {
