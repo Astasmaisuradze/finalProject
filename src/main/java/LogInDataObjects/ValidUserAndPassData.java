@@ -5,5 +5,3 @@ public interface ValidUserAndPassData {
             username = "standard_user",
             password = "secret_sauce";
 }
-
-

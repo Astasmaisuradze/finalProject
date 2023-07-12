@@ -32,5 +32,3 @@ public class ValidUserAndPassPage {
         Thread.sleep(5000);
     }
 }
-
-
