@@ -15,5 +15,5 @@ public class ChromeRunner {
     public void closeChrome(){
         driver.quit();
     }
-
+//aq eshveba brauzeri
 }
